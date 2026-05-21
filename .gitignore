@@ -1,0 +1,47 @@
+# Virtual environment
+venv/
+env/
+.venv/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset — large files, local only
+train/
+test/
+validation/
+
+# Model artifacts
+*.h5
+*.keras
+*.weights.h5
+*.pt
+*.pth
+saved_models/
+models/
+checkpoints/
+
+# Generated plots (optional: remove these lines to track them)
+class_distribution.png
+sample_images.png
+
+# IDE / OS
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
