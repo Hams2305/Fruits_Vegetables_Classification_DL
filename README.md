@@ -86,9 +86,10 @@ Input Image (224×224×3)  →  [0, 1] float32
 
 | Item | Value |
 |------|-------|
-| Preprocessing | `resnet50.preprocess_input` (BGR, mean-subtracted) |
-| Base | ~175 layers, fine-tune from layer 140 |
-| Head | GAP → BN → Dropout → Dense(36, softmax) |
+| Preprocessing | `Rescaling(×255)` → `resnet50.preprocess_input` (BGR, mean-subtracted) |
+| Base | 175 layers, fine-tune from layer 140 |
+| Head | GAP → BN → Dropout(0.3) → Dense(36, softmax) |
+| Test accuracy | **97.21%** |
 | Saved as | `resnet50_rawan.keras` |
 
 ### EfficientNetB0 - `03_efficientnet.ipynb`
@@ -98,6 +99,7 @@ Input Image (224×224×3)  →  [0, 1] float32
 | Preprocessing | Built-in (accepts [0, 255] directly) |
 | Base | 237 layers, fine-tune last 30 |
 | Head | Dropout(0.2) → Dense(256, relu) → Dropout(0.2) → Dense(36, softmax) |
+| Test accuracy | **95.82%** |
 | Saved as | `efficientnet.keras` |
 
 ### VGG16 - `05_vgg.ipynb`
@@ -107,6 +109,7 @@ Input Image (224×224×3)  →  [0, 1] float32
 | Preprocessing | `vgg16.preprocess_input` (BGR, mean-subtracted) via custom layer |
 | Base | 19 layers, fine-tune block5 (layers 15+) |
 | Head | GAP → Dense(256, relu) → BN → Dropout(0.4) → Dense(36, softmax) |
+| Test accuracy | **96.66%** |
 | Saved as | `vgg.keras` |
 
 ---
@@ -163,4 +166,4 @@ This is the deep learning continuation of an ML project from the previous semest
 | Approach | Frozen features + classical classifier | End-to-end fine-tuning |
 | Pipeline | 2-stage (binary → multi-class) | Single-stage (36 classes directly) |
 | Models | DT, RF, XGBoost, KNN, SVM, ANN | MobileNetV2, ResNet50, EfficientNetB0, VGG16 |
-| Best accuracy | 98% (KNN) | 93%+ (MobileNetV2) |
+| Best accuracy | 98% (KNN) | 97.21% (ResNet50) |
